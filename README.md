@@ -262,7 +262,7 @@ This confirms that the user created during Scenario 1 has been successfully dele
 2. Scenario 2 - Get Users
 3. Bonus - Delete User
 4. Bonus - Verify Deleted User
-5. Bonus - Get All Users (GET) *Just to verify another whether the deleted user exists in the list of users or not
+5. Bonus - Get All Users (GET) *Just to verify again whether the deleted user exists in the list of users or not
 
 ```
 
@@ -275,7 +275,7 @@ Execute each request manually in the following sequence:
 2. Scenario 2 - Get Users
 3. Bonus - Delete User
 4. Bonus - Verify Deleted User
-5. Bonus - Get All Users (GET) *Just to verify another whether the deleted user exists in the list of users or not
+5. Bonus - Get All Users (GET) *Just to verify again whether the deleted user exists in the list of users or not
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
