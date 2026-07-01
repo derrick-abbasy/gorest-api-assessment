@@ -70,9 +70,13 @@ Update the following variables:
 
 Example:
 
+```
+
 baseUrl = https://gorest.co.in/public/v2
 token = YOUR_GOREST_ACCESS_TOKEN
 userId =
+
+```
 
 
 Click **Save**.
@@ -94,6 +98,7 @@ GoRest_API.postman_collection.json
 
 # Collection Structure
 
+```
 
 GoRest API Assessment
 │
@@ -102,6 +107,8 @@ GoRest API Assessment
 ├── Bonus - Delete User (DELETE)
 ├── Bonus - Verify Deleted User (GET)
 └── Bonus - Get All Users (GET) *Just to verify another whether the deleted user exists in the list of users or not
+
+```
 
 
 
@@ -276,12 +283,16 @@ Execute each request manually in the following sequence:
 
 # Expected Results
 
+```
+
 | Request | Expected Status |
 |---------|-----------------|
 | Scenario 1 - Create User | 201 Created |
 | Scenario 2 - Get Users | 200 OK |
 | Bonus - Delete User | 204 No Content |
 | Bonus - Verify Deleted User | 404 Not Found |
+
+```
 
 All Postman test assertions should pass successfully.
 
