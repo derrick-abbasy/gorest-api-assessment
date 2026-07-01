@@ -1,0 +1,286 @@
+{
+  "info": {
+    "_postman_id": "85a84eb6-8382-4c0a-8b5c-777704c3577e",
+    "name": "GoRest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37508023"
+  },
+  "item": [
+    {
+      "name": "Scenario 1 Create Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "//Validate status code\r",
+              "pm.test(\"Validate the Status Code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "let response = pm.response.json();\r",
+              "\r",
+              "// Validate 'id' property is a number\r",
+              "pm.test(\"Validate 'ID' property is a number\", function () {\r",
+              "    pm.expect(response.id).to.be.a('number');\r",
+              "});\r",
+              "\r",
+              "// This is to save the created user ID for later requests\r",
+              "pm.environment.set(\"userId\", response.id);\r",
+              "\r",
+              "console.log(\"Created User ID:\", response.id);\r",
+              "\r",
+              "\r",
+              "// Validate 'Name' property is a string\r",
+              "pm.test(\"Validate 'name' property is a string\", function () {\r",
+              "    pm.expect(response.name).to.be.a('string');\r",
+              "});\r",
+              "\r",
+              "// Validate User's Gender\r",
+              "pm.test(\"Validate 'gender' property is a male or female\", function () {\r",
+              "    // Check if \"gender\" is either \"male\" or \"female\"\r",
+              "    pm.expect(response.gender).to.satisfy(function (gender) {\r",
+              "        return gender === \"male\" || gender === \"female\";\r",
+              "    });\r",
+              "});\r",
+              "\r",
+              "//Validate email format\r",
+              "pm.test(\"Validate Email format\", function () {\r",
+              "    pm.expect(response.email).to.match(\r",
+              "        /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/\r",
+              "    );\r",
+              "});\r",
+              "\r",
+              "//Validate user's status\r",
+              "pm.test(\"Validate status is either active or inactive\", function () {\r",
+              "    pm.expect([\"active\", \"inactive\"]).to.include(response.status);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Patrick Star\",\r\n    \"gender\": \"male\",\r\n    \"email\": \"patrick{{$timestamp}}@gmail.com\",\r\n    \"status\": \"active\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Scenario 2 Get Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Validate Status Code\r",
+              "pm.test(\"Validate Status Code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "let response = pm.response.json();\r",
+              "\r",
+              "// Ensure response is an array\r",
+              "pm.test(\"Validate response is an array\", function () {\r",
+              "    pm.expect(response).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "// Validate first user's status\r",
+              "pm.test(\"Validate the first user's status is either active or inactive\", function () {\r",
+              "    pm.expect([\"active\", \"inactive\"]).to.include(response[0].status);\r",
+              "});\r",
+              "\r",
+              "// Validate first user's ID\r",
+              "pm.test(\"Validate the first user's ID is a number\", function () {\r",
+              "    pm.expect(response[0].id).to.be.a(\"number\");\r",
+              "});\r",
+              "\r",
+              "// Validate first user's name\r",
+              "pm.test(\"Validate the first user's name is a string\", function () {\r",
+              "    pm.expect(response[0].name).to.be.a(\"string\");\r",
+              "});\r",
+              "\r",
+              "//Validate email format\r",
+              "pm.test(\"Validate the first user's Email format is correct\", function () {\r",
+              "    pm.expect(response[0].email).to.match(\r",
+              "        /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/\r",
+              "    );\r",
+              "});\r",
+              "\r",
+              "// Validate user's gender\r",
+              "pm.test(\"Validate the first user's gender property is male or female\", function () {\r",
+              "    pm.expect([\"male\", \"female\"]).to.include(response[0].gender);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus Scenario : Delete User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Validate the Status Code\r",
+              "pm.test(\"Validate Status Code is 204\", function () {\r",
+              "    pm.response.to.have.status(204);\r",
+              "});\r",
+              "\r",
+              "// Response body should be empty\r",
+              "pm.test(\"Response body is empty\", function () {\r",
+              "    pm.expect(pm.response.text()).to.eql(\"\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/users/{{userId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "{{userId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus Scenario : Get Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Validate the Status Code\r",
+              "pm.test(\"Status Code is 404\", function () {\r",
+              "    pm.response.to.have.status(404);\r",
+              "});\r",
+              "\r",
+              "let response = pm.response.json();\r",
+              "\r",
+              "//Validate the message in the response body\r",
+              "pm.test(\"User no longer exists\", function () {\r",
+              "    pm.expect(response.message).to.eql(\"Resource not found\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/users/{{userId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "{{userId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Existing Users",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
