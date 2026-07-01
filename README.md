@@ -1,5 +1,5 @@
 # gorest-api-assessment
-GoRest API Testing Assessement using Postman
+GoRest API Testing Assessement using Postman and Chai JS for API Test Automation
 
 
 # Overview
