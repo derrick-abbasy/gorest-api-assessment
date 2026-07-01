@@ -118,8 +118,8 @@ GoRest API Assessment
 **# Request Details
 **
 
-**## Scenario 1 - Create User
-**
+## Scenario 1 - Create User
+
 **Method**
 
 
