@@ -115,38 +115,37 @@ GoRest API Assessment
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-**# Request Details
-**
+# Request Details
 
 ## Scenario 1 - Create User
 
 **Method**
 
-
+```
 POST
-
+```
 
 **Endpoint**
 
-
+```
 {{baseUrl}}/users
-
+```
 
 **Authorization**
 
 Bearer Token
 
-
+```
 {{token}}
-
+```
 
 **Description**
 
 Creates a new user and automatically stores the returned user ID into the environment variable:
 
-
+```
 userId
-
+```
 
 ### Validations
 
@@ -156,29 +155,29 @@ userId
 - Gender is either male or female
 - Status is either active or inactive
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 ## Scenario 2 - Get Users
 
 **Method**
 
-
+```
 GET
-
+```
 
 **Endpoint**
 
-
+```
 {{baseUrl}}/users
-
+```
 
 **Authorization**
 
 Bearer Token
 
-
+```
 {{token}}
-
+```
 
 ### Validations
 
@@ -186,63 +185,62 @@ Bearer Token
 - Response is an array
 - First user's status is either active or inactive
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+---
 
 ## Bonus - Delete User
 
 **Method**
 
-
+```
 DELETE
-
+```
 
 **Endpoint**
 
-
+```
 {{baseUrl}}/users/{{userId}}
-
+```
 
 **Authorization**
 
 Bearer Token
 
-
+```
 {{token}}
-
+```
 
 ### Validations
 
 - Status Code = 204
 - Response body is empty
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+---
 
 ## Bonus - Verify Deleted User
 
 **Method**
 
-
+```
 GET
-
+```
 
 **Endpoint**
 
-
+```
 {{baseUrl}}/users/{{userId}}
-
+```
 
 ### Validations
 
 - Status Code = 404
 - Response message equals:
 
-
+```
 Resource not found
-
+```
 
 This confirms that the user created during Scenario 1 has been successfully deleted.
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
