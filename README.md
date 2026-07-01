@@ -12,11 +12,15 @@ The collection automates the required API test scenarios and includes an additio
 
 # Project Structure
 
+```
+
 GoRest-API-Assessment
 │
 ├── GoRest_API.postman_collection.json
 ├── GoRest.postman_environment.json
 └── README.md
+
+```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
